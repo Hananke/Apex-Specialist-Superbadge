@@ -2,19 +2,24 @@
 
 https://trailhead.salesforce.com/en/content/learn/superbadges/superbadge_apex
 
-## Part 1: Choosing a Development Model
+## Part 1: how to play with this project
 
-There are two types of developer processes or models supported in Salesforce Extensions for VS Code and Salesforce CLI. These models are explained below. Each model offers pros and cons and is fully supported.
+This project is uses the Org Development Model 
 
-### Package Development Model
+use the follwing command to "push" and "pull" the project directly to/from the playground
+Push `SFDX: Deploy Source to Org` (VS Code) or `sfdx force:source:deploy` (Salesforce CLI) 
+Pull `SFDX: Retrieve Source from Org` (VS Code) or `sfdx force:source:retrieve` (Salesforce CLI).
 
-The package development model allows you to create self-contained applications or libraries that are deployed to your org as a single package. These packages are typically developed against source-tracked orgs called scratch orgs. This development model is geared toward a more modern type of software development process that uses org source tracking, source control, and continuous integration and deployment.
-
-If you are starting a new project, we recommend that you consider the package development model. To start developing with this model in Visual Studio Code, see [Package Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/package-development-model). For details about the model, see the [Package Development Model](https://trailhead.salesforce.com/en/content/learn/modules/sfdx_dev_model) Trailhead module.
-
-If you are developing against scratch orgs, use the command `SFDX: Create Project` (VS Code) or `sfdx force:project:create` (Salesforce CLI) to create your project. If you used another command, you might want to start over with that command.
-
-When working with source-tracked orgs, use the commands `SFDX: Push Source to Org` (VS Code) or `sfdx force:source:push` (Salesforce CLI) and `SFDX: Pull Source from Org` (VS Code) or `sfdx force:source:pull` (Salesforce CLI). Do not use the `Retrieve` and `Deploy` commands with scratch orgs.
+## some notes:
+1. for check point 2: you will need to add the Warehouse url to the `remote site settings`
+1. for check point 3: you could either schedule the class 
+  - in the setup (Apex class -> schedule apex class)
+  - in dev console with a similar code snippet
+```
+  WarehouseSyncSchedule m = new WarehouseSyncSchedule();
+  String sch = '0 1 * * *';
+  String jobID = system.schedule('WarehouseSync', sch, m);
+```
 
 ### Org Development Model
 
@@ -45,11 +50,6 @@ The `packageDirectories` filepath tells VS Code and Salesforce CLI where the met
 ]
 ```
 
-## Part 2: Working with Source
-
-For details about developing against scratch orgs, see the [Package Development Model](https://trailhead.salesforce.com/en/content/learn/modules/sfdx_dev_model) module on Trailhead or [Package Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/package-development-model).
-
-For details about developing against orgs that don’t have source tracking, see the [Org Development Model](https://trailhead.salesforce.com/content/learn/modules/org-development-model) module on Trailhead or [Org Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/org-development-model).
 
 ## Part 3: Deploying to Production
 
